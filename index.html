@@ -4,156 +4,111 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SmartFix Electricals — Booking</title>
-<link rel="stylesheet" href="css/style.css">
+
+<!-- LINK CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("ad1dHGUf_gonZ5ERG");
+  })();
+</script>
+
 </head>
+<script src="script.js"></script>
 <body>
 
-<!-- WELCOME PAGE -->
-<section id="welcomePage" class="page active">
-  <video autoplay muted loop id="welcomeVideo" class="full-bg-video">
-    <source src="video/welcome.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video>
-  <div class="overlay"></div>
-  <div class="welcome-content">
-    <h1>SmartFix Electricals</h1>
-    <div id="liveDateTime" class="datetime"></div>
-    <button id="welcomeBtn" class="btn btn-primary">Welcome</button>
+<!-- Slideshow Background -->
+<div class="slideshow">
+  <div class="IMAGE1.jpg"></div>
+  <div class="IMAGE2.jpg"></div>
+  <div class="IMAGE3.jpg"></div>
+  <div class="IMAGE4.jpg"></div>
+</div>
+
+<!-- Dark Overlay -->
+<div class="overlay"></div>
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+  <!-- PROGRESS BAR -->
+  <div id="progress">
+      <div id="bar"></div>
   </div>
-</section>
-
-<!-- BOOKING PAGE -->
-<main id="bookingPage" class="page">
-
-  <!-- Slideshow background -->
-  <div id="slideshow" class="slideshow">
-    <img src="IMAGE1.jpg" class="slide active">
-    <img src="IMAGE2.jpg" class="slide">
-    <img src="IMAGE3.jpg" class="slide">
-    <img src="IMAGE4.jpg" class="slide">
-  </div>
-
-  <header class="header">
-    <h1>SmartFix Electricals</h1>
-  </header>
 
   <!-- STEP 1 -->
   <section id="step1" class="step active">
-    <div class="step-content">
-      <div class="inputs-left">
-        <label for="user_name">Full Name</label>
-        <input id="user_name" type="text" placeholder="John Doe" required>
+    <h1>Book Electrical Maintenance</h1>
 
-        <label for="user_phone">Phone Number</label>
-        <input id="user_phone" type="tel" placeholder="+233 54 389 9210" required>
+    <label>Your Full Name</label>
+    <input type="text" id="user_name" required>
 
-        <label for="maintenance_type">Type of Maintenance</label>
-        <select id="maintenance_type" required>
-          <option value="">-- Select --</option>
-          <option>Wiring fault / repair</option>
-          <option>Rewiring / new connection</option>
-          <option>Lighting / fan installation</option>
-          <option>Socket outlet installation</option>
-          <option>Fuse box / circuit breaker</option>
-          <option>Generator / inverter</option>
-          <option>Appliance connection</option>
-          <option>Solar PV / battery system</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="actions-right">
-        <button id="next1" class="btn btn-primary">Next ➡</button>
-      </div>
-    </div>
-    <div class="bottom-center">
-      <a id="quickwhats" href="#" class="whatsapp" target="_blank">💬 Quick WhatsApp</a>
-    </div>
-    <div class="bottom-right">
-      <button id="backWelcome" class="btn btn-ghost">⬅ Back to Welcome</button>
-    </div>
+    <label>Your Phone Number</label>
+    <input type="text" id="user_phone" required>
+
+    <label>Type of Maintenance</label>
+    <select id="maintenance_type" required>
+      <option value="">Select</option>
+      <option>General Wiring</option>
+      <option>Lighting Repair</option>
+      <option>Socket/Outlet Fault</option>
+      <option>Full House Check-Up</option>
+    </select>
+
+    <button id="next1">Next</button>
+
+    <a id="quickwhats" class="wa">
+      Quick WhatsApp Contact
+    </a>
   </section>
 
   <!-- STEP 2 -->
   <section id="step2" class="step">
-    <div class="step-content">
-      <label for="user_email">Email</label>
-      <input id="user_email" type="email" placeholder="you@example.com" required>
+    <h1>Contact Address</h1>
 
-      <label for="audience_level">Priority Level</label>
-      <select id="audience_level" required>
-        <option value="">-- Select Priority --</option>
-        <option>Low (Flexible)</option>
-        <option>Medium (2–3 Days)</option>
-        <option>High (Urgent)</option>
-      </select>
+    <label>Enter Your House / Street Address</label>
+    <textarea id="contact_address" required></textarea>
 
-      <label for="contact_address">Contact Address</label>
-      <input id="contact_address" type="text" placeholder="Your address" required>
-
-      <label for="preferred_datetime">Preferred Date & Time</label>
-      <input id="preferred_datetime" type="datetime-local">
-
-      <label for="message">Describe the Problem</label>
-      <textarea id="message" placeholder="Describe issue..."></textarea>
-    </div>
-    <div class="step-buttons">
-      <button id="back1" class="btn btn-ghost">⬅ Back</button>
-      <button id="toReview" class="btn btn-primary">Review & Send ➡</button>
+    <div class="two-btns">
+      <button id="back1">Back</button>
+      <button id="next2">Next</button>
     </div>
   </section>
 
-  <!-- STEP 3 - REVIEW -->
-  <section id="step3" class="step">
-    <div id="reviewBox" class="review-box"></div>
-    <div class="step-buttons">
-      <button id="editBtn" class="btn btn-ghost">⬅ Edit</button>
-      <button id="confirmBtn" class="btn btn-primary">✅ Confirm & Send</button>
-      <div id="sending" style="display:none;" class="spinner"></div>
+  <!-- REVIEW -->
+  <section id="review" class="step">
+    <h1>Review Your Request</h1>
+
+    <p><b>Name:</b> <span id="r_name"></span></p>
+    <p><b>Phone:</b> <span id="r_phone"></span></p>
+    <p><b>Maintenance Type:</b> <span id="r_type"></span></p>
+    <p><b>Contact Address:</b> <span id="r_address"></span></p>
+
+    <div class="two-btns">
+      <button id="back2">Back</button>
+      <button id="confirmSend">Confirm & Send</button>
     </div>
   </section>
 
-  <!-- ABOUT / INFO -->
-  <section class="info-section">
-    <div class="about-us">
-      <h3>About SmartFix Electricals</h3>
-      <p>Professional electrical maintenance in Accra and surrounding areas...</p>
-    </div>
-    <div class="what-electrician-does">
-      <h3>What an Electrician Does</h3>
-      <ul>
-        <li>Diagnose and repair wiring faults</li>
-        <li>Install sockets, switches, lights, fans</li>
-        <li>Rewiring for additions/renovations</li>
-        <li>Generators, inverters, solar PV</li>
-      </ul>
-    </div>
-    <div class="contact-us">
-      <h3>Contact Us</h3>
-      <p>Phone: +233 54 389 9210</p>
-      <p>Email: timothytiekuapawu@gmail.com</p>
-    </div>
-  </section>
-
-</main>
-
-<!-- RESULT / REQUEST SENT PAGE -->
-<section id="resultPage" class="page">
-  <div class="slideshow blur-bg">
-    <img src="images/IMAGE1.jpg" class="slide active">
-    <img src="images/IMAGE2.jpg" class="slide">
-    <img src="images/IMAGE3.jpg" class="slide">
-    <img src="images/IMAGE4.jpg" class="slide">
+  <!-- RESULT MODAL -->
+  <div id="result" class="hidden">
+      <div id="resultBox">
+          <h2 id="resultTitle"></h2>
+          <p id="resultMessage"></p>
+          <button id="backHome">Back to Home</button>
+      </div>
   </div>
-  <div class="overlay"></div>
-  <div class="result-content">
-    <h2 id="resultTitle"></h2>
-    <p id="resultMessage"></p>
-    <p id="countdownText"></p>
-    <button id="backHomeBtn" class="btn btn-ghost">🏠 Back to Home</button>
-  </div>
-</section>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-<script src="js/script.js"></script>
+  <!-- Sending loader -->
+  <div id="sending">Sending… Please wait</div>
+
+</div>
+
+<!-- LINK JS -->
+<script src="script.js"></script>
+
 </body>
 </html>
