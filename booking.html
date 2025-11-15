@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartFix Electricals — Booking</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Slideshow Background -->
+<div class="slideshow">
+  <img src="IMAGE1.jpg" class="slide active">
+  <img src="IMAGE2.jpg" class="slide">
+  <img src="IMAGE3.jpg" class="slide">
+  <img src="IMAGE4.jpg" class="slide">
+</div>
+
+<!-- Overlay -->
+<div class="overlay"></div>
+
+<main class="page-wrap">
+
+  <!-- Step 1 -->
+  <section id="step1" class="step active">
+    <h2>Step 1 — Who you are & what you need</h2>
+    <div class="form-row">
+      <div class="left-col">
+        <label for="user_name">Full Name</label>
+        <input id="user_name" type="text" placeholder="John Doe" required>
+
+        <label for="user_phone">Phone Number</label>
+        <input id="user_phone" type="tel" placeholder="+233 54 389 9210" required>
+
+        <label for="maintenance_type">Type of Maintenance</label>
+        <select id="maintenance_type" required>
+          <option value="">-- Select --</option>
+          <option>Wiring fault / repair</option>
+          <option>Rewiring / new connection</option>
+          <option>Lighting / fan installation</option>
+          <option>Socket outlet installation</option>
+          <option>Fuse box / circuit breaker</option>
+          <option>Generator / inverter</option>
+          <option>Appliance connection</option>
+          <option>Solar PV / battery system</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="right-col">
+        <button id="next1" class="btn btn-primary">Next ➡</button>
+      </div>
+    </div>
+    <a id="backWelcome" class="btn btn-ghost">⬅ Back to Welcome</a>
+    <a id="quickWhats" class="btn btn-whatsapp" target="_blank">💬 Quick WhatsApp</a>
+  </section>
+
+  <!-- Step 2 -->
+  <section id="step2" class="step">
+    <h2>Step 2 — Job Details</h2>
+    <label for="user_email">Email</label>
+    <input id="user_email" type="email" placeholder="you@example.com" required>
+
+    <label for="audience_level">Priority Level</label>
+    <select id="audience_level" required>
+      <option value="">-- Select --</option>
+      <option>Low (Flexible)</option>
+      <option>Medium (2–3 Days)</option>
+      <option>High (Urgent)</option>
+    </select>
+
+    <label for="contact_address">Contact Address</label>
+    <input id="contact_address" type="text" placeholder="Your Address" required>
+
+    <label for="preferred_datetime">Preferred Date & Time</label>
+    <input id="preferred_datetime" type="datetime-local">
+
+    <label for="message">Describe the Problem</label>
+    <textarea id="message" placeholder="Describe issue..."></textarea>
+
+    <div class="buttons">
+      <button id="back1" class="btn btn-ghost">⬅ Back</button>
+      <button id="toReview" class="btn btn-primary">Review & Send ➡</button>
+    </div>
+  </section>
+
+  <!-- Step 3: Review -->
+  <section id="review" class="step">
+    <h2>Review Your Details</h2>
+    <div id="reviewBox"></div>
+    <div class="buttons">
+      <button id="editBtn" class="btn btn-ghost">⬅ Edit</button>
+      <button id="confirmBtn" class="btn btn-primary">✅ Confirm & Send</button>
+      <div id="sending" class="spinner"></div>
+    </div>
+  </section>
+
+  <!-- Info Sections -->
+  <section class="info-sections">
+    <div class="about">About SmartFix Electricals</div>
+    <div class="electrician">What an Electrician Does</div>
+    <div class="contact-us">Contact Us</div>
+  </section>
+
+</main>
+
+<!-- Result Modal -->
+<div id="resultPanel" class="result-panel">
+  <div class="result-card">
+    <h2 id="resultTitle"></h2>
+    <p id="resultMessage"></p>
+    <p>Returning in <span id="countdown">10</span> seconds...</p>
+    <button class="btn btn-ghost" onclick="resetToHome()">🏠 Back to Home</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
